@@ -17,7 +17,7 @@ export  async function createTable() {
 export async function listProdutos(){
     try{  
         const db = await openDb();
-        const produtos = await db.all('select * from produtos');
+        const produtos = await db.all('select * from produtos order by preco asc');
         return produtos;
 
     }catch(err){

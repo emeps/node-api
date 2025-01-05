@@ -1,28 +1,31 @@
-export const ListarProdutosPage = () =>{
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Navbar } from '../../../components/Navbar';
+import { BoxTable } from '../../../components/BoxTable';
+import { Box } from '../../../components/Box';
+
+export const ListarProdutosPage = () => {
+    
+    const [products, setProducts] = useState([]);
+
+    const fetchProducts = async () => {
+        await axios.get('http://localhost:3001/produtos/list')
+            .then((response) => {
+                console.log(response.data);
+                setProducts(response.data);
+            }
+            ).catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
     return (
-        <>
-            <h1>Listar Produtos</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Preço</th>
-                        <th>Descrição</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Produto 1</td>
-                        <td>100</td>
-                        <td>Descrição do Produto 1</td>
-                    </tr>
-                    <tr>
-                        <td>Produto 2</td>
-                        <td>200</td>
-                        <td>Descrição do Produto 2</td>
-                    </tr>
-                </tbody>
-            </table>
-        </>
+        <Box className="min-h-screen bg-gray-100">
+            <Navbar />
+            <BoxTable products={products} />
+        </Box>
     )
 }
