@@ -24,7 +24,7 @@ Este projeto é um sistema de cadastro de produtos que permite listar e adiciona
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/emeps/node-api.git
    ```
 
 2. Instale as dependências do backend:
